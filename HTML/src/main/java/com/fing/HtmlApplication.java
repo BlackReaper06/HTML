@@ -10,6 +10,4 @@ public class HtmlApplication {
 		SpringApplication.run(HtmlApplication.class, args);
 	}
 
-	
-	
 }
