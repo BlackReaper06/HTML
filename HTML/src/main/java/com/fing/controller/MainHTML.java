@@ -1,36 +1,39 @@
 package com.fing.controller;
 
-import com.fing.User;
+import java.util.Arrays;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.fing.User;
 
-import java.util.ArrayList;
-import java.util.List;
-
-@RestController
+@Controller
 public class MainHTML {
 
-    @GetMapping("/usuario")
-    public User obtenerUsuario() {
+    @GetMapping("/perfil")
+    public String info(Model model) {
 
-        List<String> cosas = new ArrayList<>();
+        model.addAttribute("theme", "red");
 
-        cosas.add("Comida china");
-        cosas.add("Cyberpunk");
-        cosas.add("Mac DeMarco");
-        cosas.add("HxH");
-        cosas.add("20 Años");
-        cosas.add("Java");
-        cosas.add("Horchata");
-        cosas.add("Dormir");
-        cosas.add("Gatos");
-        cosas.add("Batman");
-
-        return new User(
+        User user = new User(
                 "Erick Ramirez",
                 "ultraman060607@email.com",
                 "BlackReaper06",
-                cosas
+                Arrays.asList(
+                        "Comida china",
+                        "Cyberpunk",
+                        "Mac DeMarco",
+                        "HxH",
+                        "20 Años",
+                        "Java",
+                        "Horchata",
+                        "Dormir",
+                        "Gatos",
+                        "Batman"
+                )
         );
+
+        model.addAttribute("user", user);
+
+        return "index";
     }
 }
